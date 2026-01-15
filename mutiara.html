@@ -27,35 +27,37 @@ p{line-height:1.6;margin-bottom:15px}
   animation: fadeIn .4s ease;
 }
 
+.qr-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
 .qr-popup-box {
   background: #fff;
-  padding: 30px 25px;
+  padding: 25px;
+  border-radius: 12px;
   max-width: 350px;
-  width: 90%;
-  border-radius: 15px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  animation: scaleIn .4s ease;
 }
 
-.qr-popup-box h2 {
-  color: #007acc;
-  margin-bottom: 15px;
+.btn-close {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #ED2F59;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.qr-popup-box p {
-  font-size: 15px;
-  line-height: 1.6;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scaleIn {
-  from { transform: scale(.85); }
-  to { transform: scale(1); }
+.btn-close:hover {
+  background: #222;
 }
 
 
@@ -175,6 +177,8 @@ footer a{color:#fff;font-weight:bold;text-decoration:none}
       <strong>sehat dan bahagia selalu</strong>.<br><br>
       <strong>Aamiin 🤲</strong>
     </p>
+
+    <button class="btn-close" onclick="closeQrPopup()">Tutup</button>
   </div>
 </div>
 
@@ -327,15 +331,10 @@ const obs=new IntersectionObserver(e=>{
 },{threshold:.2});
 document.querySelectorAll('.card,.benefit,.cta').forEach(el=>obs.observe(el));
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const popup = document.getElementById('qrPopup');
-    if (popup) {
-      popup.style.opacity = '0';
-      setTimeout(() => popup.style.display = 'none', 400);
-    }
-  }, 3000); // ⏱️ 4 detik
-});
+function closeQrPopup() {
+  document.getElementById("qrPopup").style.display = "none";
+}
+
 </script>
 
 </body>
